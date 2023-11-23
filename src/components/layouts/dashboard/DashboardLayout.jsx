@@ -8,7 +8,14 @@ export function DashboardLayout() {
     <Box display="flex">
       <DashboardHeader />
       <DashboardSidebar />
-      <Box component={"main"} sx={{ flexGrow: 1, p: 3 }}>
+      <Box
+        component={"main"}
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          backgroundColor: (theme) => theme.palette.background.default,
+        }}
+      >
         <Toolbar />
         <Outlet />
       </Box>

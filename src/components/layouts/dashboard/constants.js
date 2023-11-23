@@ -24,7 +24,7 @@ export const MenuItems = [
     to: "",
   },
   {
-    id: 3,
+    id: 4,
     label: "Account",
     Icon: PersonIcon,
     to: "",
