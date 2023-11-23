@@ -1,6 +1,10 @@
 import { Avatar, Box, Grid, LinearProgress, Typography } from "@mui/material";
 import React from "react";
-import { DataCard, LatestProductList } from "../../components";
+import {
+  DataCard,
+  LatestOrdersTable,
+  LatestProductList,
+} from "../../components";
 import People from "@mui/icons-material/People";
 
 function Dashboard() {
@@ -84,7 +88,9 @@ function Dashboard() {
         <Grid item xs={12} md={4} lg={3}>
           <LatestProductList />
         </Grid>
-        <Grid item xs={12} md={8} lg={9}></Grid>
+        <Grid item xs={12} md={8} lg={9}>
+          <LatestOrdersTable />
+        </Grid>
       </Grid>
     </Box>
   );

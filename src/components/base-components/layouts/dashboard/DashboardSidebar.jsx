@@ -1,7 +1,7 @@
 import React from "react";
 import { drawerWidth } from "./constants";
 import { Box, Drawer, Typography } from "@mui/material";
-import { LogoIcon } from "../../../assets/svg";
+import { LogoIcon } from "../../../../assets/svg";
 import SidebarList from "./SidebarList";
 
 function DashboardSidebar() {

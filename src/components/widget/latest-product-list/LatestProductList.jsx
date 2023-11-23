@@ -1,7 +1,7 @@
 import React from "react";
-import { CaptionList } from "../caption-list";
 import { Box, Button } from "@mui/material";
 import { ArrowRight } from "@mui/icons-material";
+import { CaptionList } from "../../base-components";
 
 export function LatestProductList() {
   return (

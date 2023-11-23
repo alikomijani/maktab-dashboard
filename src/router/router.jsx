@@ -1,7 +1,6 @@
 import React, { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import { DashboardLayout } from "../components";
-import { Loadable } from "../components/loadable/Loadable";
+import { DashboardLayout, Loadable } from "../components";
 
 const Dashboard = Loadable(lazy(() => import("../Pages/dashboard/Dashboard")));
 
