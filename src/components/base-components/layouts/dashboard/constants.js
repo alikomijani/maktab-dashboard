@@ -9,24 +9,24 @@ export const MenuItems = [
     id: 1,
     label: "Dashboard",
     Icon: SignalCellularAltIcon,
-    to: "",
+    to: "/dashboard",
   },
   {
     id: 2,
     label: "Customers",
     Icon: PeopleIcon,
-    to: "",
+    to: "/dashboard/customers",
   },
   {
     id: 3,
     label: "Products",
     Icon: ShoppingBagIcon,
-    to: "",
+    to: "/dashboard/products",
   },
   {
     id: 4,
     label: "Account",
     Icon: PersonIcon,
-    to: "",
+    to: "/dashboard/account",
   },
 ];
