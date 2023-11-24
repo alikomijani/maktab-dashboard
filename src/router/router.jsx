@@ -6,6 +6,9 @@ const Dashboard = Loadable(lazy(() => import("../Pages/dashboard/Dashboard")));
 const Customers = Loadable(
   lazy(() => import("../Pages/dashboard/customers/Customers"))
 );
+const Account = Loadable(
+  lazy(() => import("../Pages/dashboard/account/Account"))
+);
 
 export const router = createBrowserRouter([
   {
@@ -26,7 +29,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "account",
-        element: <div>account</div>,
+        element: <Account />,
       },
     ],
   },

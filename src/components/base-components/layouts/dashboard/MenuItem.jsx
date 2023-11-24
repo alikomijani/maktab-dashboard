@@ -11,7 +11,6 @@ function MenuItem({ item }) {
   const Icon = item.Icon;
   const match = useMatch(item.to);
   const navigate = useNavigate();
-  console.log({ match, href: item.to });
   return (
     <ListItem
       disablePadding

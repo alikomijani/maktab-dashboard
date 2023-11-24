@@ -6,7 +6,7 @@ export function DataCard({ label, value, avatar, subtitle }) {
     <Card>
       <CardContent
         sx={{
-          height: 140,
+          minHeight: 140,
         }}
       >
         <Box display="flex" justifyContent="space-between">

@@ -3,6 +3,30 @@ import { createTheme } from "@mui/material/styles";
 // Create a theme instance.
 const theme = createTheme({
   components: {
+    MuiCardHeader: {
+      styleOverrides: {
+        root: {
+          padding: 24,
+          paddingTop: 32,
+        },
+        title: {
+          fontSize: 18,
+          fontWeight: 600,
+        },
+        subheader: {
+          fontSize: 14,
+          fontWeight: 400,
+        },
+      },
+    },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          padding: "32px 24px",
+        },
+      },
+    },
+    MuiCardActions: { styleOverrides: { root: { padding: 16 } } },
     MuiButton: {
       defaultProps: {
         disableRipple: true,
