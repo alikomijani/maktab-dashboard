@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { SnackbarAlert } from "../../base-components";
-import { SnackAlertContext } from "../../../context/SnackAlertProvider.context";
+import { SnackAlertContext } from "../../../providers/SnackAlertProvider";
 
 export function SnackAlertWrapper() {
   const { handleClose, value } = useContext(SnackAlertContext);

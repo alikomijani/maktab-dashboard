@@ -2,12 +2,27 @@ import { Box } from "@mui/material";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { DataTable, PageActions, PageSearch } from "../../../components";
 import { columns } from "./constants";
-import { SnackAlertContext } from "../../../context/SnackAlertProvider.context";
-import { getCustomers } from "../../../api/customers";
+import { SnackAlertContext } from "../../../providers";
+import { useCustomers } from "../../../api";
 
 function Customers() {
-  const [customers, setCustomers] = useState([]);
-
+  const [params, setParams] = useState({});
+  const {
+    isLoading,
+    error,
+    data: customers,
+  } = useCustomers(
+    { params },
+    {
+      onSuccess: (data) =>
+        showAlert({
+          title: "success",
+          severity: "success",
+          message: "customers search finish",
+        }),
+    }
+  );
+  console.log({ customers });
   const { showAlert } = useContext(SnackAlertContext);
   const pageActions = useMemo(
     () => [
@@ -47,16 +62,19 @@ function Customers() {
     ],
     [showAlert]
   );
-  useEffect(() => {
-    getCustomers().then((users) => setCustomers(users));
-  }, []);
+  useEffect(() => {}, []);
   return (
     <Box>
       <Box mt={8}>
         <PageActions caption={"Customers"} actions={pageActions} />
       </Box>
       <Box marginY={4}>
-        <PageSearch label={"Customers search"} />
+        <PageSearch
+          label={"Customers search"}
+          handleSearch={(search) =>
+            setParams({ username: search ? search : undefined })
+          }
+        />
       </Box>
       <DataTable caption={"Latest Orders"} columns={columns} rows={customers} />
     </Box>

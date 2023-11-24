@@ -17,7 +17,7 @@ export const SnackAlertContext = createContext({
   }) => {},
 }); // you can optionally pass it a default value // it returns a "provider" object
 
-function SnackAlertProvider({ children }) {
+export function SnackAlertProvider({ children }) {
   const [value, setValue] = useState({
     open: false,
     autoHideDuration: 5000,
@@ -49,5 +49,3 @@ function SnackAlertProvider({ children }) {
     </SnackAlertContext.Provider>
   );
 }
-
-export default SnackAlertProvider;

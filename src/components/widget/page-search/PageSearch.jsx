@@ -1,8 +1,9 @@
 import { Search } from "@mui/icons-material";
 import { Box, Button, InputAdornment, Paper, TextField } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
-export function PageSearch({ label }) {
+export function PageSearch({ label, handleSearch }) {
+  const [value, setValue] = useState("");
   return (
     <Box
       paddingY={4}
@@ -15,6 +16,8 @@ export function PageSearch({ label }) {
       <TextField
         name="search"
         label={label}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
         sx={{
           width: 600,
         }}
@@ -26,7 +29,9 @@ export function PageSearch({ label }) {
           ),
         }}
       />
-      <Button variant="contained">Search</Button>
+      <Button variant="contained" onClick={() => handleSearch(value)}>
+        Search
+      </Button>
     </Box>
   );
 }
