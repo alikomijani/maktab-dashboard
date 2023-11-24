@@ -1,10 +1,13 @@
 import { Box } from "@mui/material";
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { DataTable, PageActions, PageSearch } from "../../../components";
-import { columns, data } from "./constants";
+import { columns } from "./constants";
 import { SnackAlertContext } from "../../../context/SnackAlertProvider.context";
+import { getCustomers } from "../../../api/customers";
 
 function Customers() {
+  const [customers, setCustomers] = useState([]);
+
   const { showAlert } = useContext(SnackAlertContext);
   const pageActions = useMemo(
     () => [
@@ -44,6 +47,9 @@ function Customers() {
     ],
     [showAlert]
   );
+  useEffect(() => {
+    getCustomers().then((users) => setCustomers(users));
+  }, []);
   return (
     <Box>
       <Box mt={8}>
@@ -52,7 +58,7 @@ function Customers() {
       <Box marginY={4}>
         <PageSearch label={"Customers search"} />
       </Box>
-      <DataTable caption={"Latest Orders"} columns={columns} rows={data} />
+      <DataTable caption={"Latest Orders"} columns={columns} rows={customers} />
     </Box>
   );
 }
