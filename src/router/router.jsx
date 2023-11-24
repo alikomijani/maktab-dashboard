@@ -3,6 +3,9 @@ import { createBrowserRouter } from "react-router-dom";
 import { DashboardLayout, Loadable } from "../components";
 
 const Dashboard = Loadable(lazy(() => import("../Pages/dashboard/Dashboard")));
+const Customers = Loadable(
+  lazy(() => import("../Pages/dashboard/customers/Customers"))
+);
 
 export const router = createBrowserRouter([
   {
@@ -15,11 +18,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "customers",
-        element: <div>customers</div>,
+        element: <Customers />,
       },
       {
         path: "products",
-        element: <div>customers</div>,
+        element: <div>products</div>,
+      },
+      {
+        path: "account",
+        element: <div>account</div>,
       },
     ],
   },
