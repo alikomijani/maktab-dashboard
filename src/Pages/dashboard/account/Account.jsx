@@ -5,11 +5,7 @@ import { UpdateProfileForm } from "../../../components";
 function Account() {
   return (
     <Box>
-      <UpdateProfileForm
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-      />
+      <UpdateProfileForm />
     </Box>
   );
 }

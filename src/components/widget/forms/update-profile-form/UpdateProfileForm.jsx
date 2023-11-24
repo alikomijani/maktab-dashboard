@@ -1,49 +1,65 @@
-import React from "react";
-import { Button, Card, Grid, TextField } from "@mui/material";
+import React, { useContext } from "react";
+import { Button, Card, CircularProgress, Grid, TextField } from "@mui/material";
 import FormCard from "../from-card/FormCard";
 import { useFormik } from "formik";
+import { useCreateCustomer } from "../../../../api";
+import { SnackAlertContext } from "../../../../providers";
 
 const initialValue = {
   email: "",
-  first_name: "",
-  last_name: "",
+  name: "",
+  username: "",
   country: "",
-  state: "",
+  phone: "",
+  website: "",
 };
 
-export function UpdateProfileForm({ defaultValue = initialValue, onSubmit }) {
+export function UpdateProfileForm({ defaultValue = initialValue }) {
+  const {
+    mutate: createUser,
+    data,
+    isLoading,
+    isError,
+    error,
+  } = useCreateCustomer({
+    onSuccess: () => {
+      showAlert({
+        title: "Success",
+        message: "customer added successful",
+      });
+    },
+  });
   const { handleChange, values, handleSubmit } = useFormik({
     initialValues: initialValue,
     onSubmit: (values) => {
-      onSubmit(values);
+      createUser(values);
     },
   });
+  const { showAlert } = useContext(SnackAlertContext);
+
   return (
     <form onSubmit={handleSubmit}>
       <FormCard
         title="Update Profile"
         cardAction={
-          <Button type="submit" variant="contained" color="primary">
-            Save Details
+          <Button
+            type="submit"
+            disabled={isLoading}
+            variant="contained"
+            color="primary"
+          >
+            {isLoading ? <CircularProgress size={20} /> : null}
+            {isLoading ? "...loading" : "Save Details"}
           </Button>
         }
       >
         <Grid container spacing={3}>
           <Grid item xs={6}>
             <TextField
-              value={values.first_name}
+              value={values.name}
               onChange={handleChange}
-              name="first_name"
-              label={"First Name"}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              value={values.last_name}
-              onChange={handleChange}
-              name="last_name"
-              label={"Last Name"}
+              name="name"
+              label={"Full Name"}
               fullWidth
             />
           </Grid>
@@ -58,19 +74,28 @@ export function UpdateProfileForm({ defaultValue = initialValue, onSubmit }) {
           </Grid>
           <Grid item xs={6}>
             <TextField
-              value={values.country}
+              value={values.phone}
               onChange={handleChange}
-              name="country"
-              label={"Country"}
+              name="phone"
+              label={"Phone"}
               fullWidth
             />
           </Grid>
           <Grid item xs={6}>
             <TextField
-              value={values.state}
+              value={values.username}
               onChange={handleChange}
-              name="state"
-              label={"State"}
+              name="username"
+              label={"Username"}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              value={values.website}
+              onChange={handleChange}
+              name="website"
+              label={"Website"}
               fullWidth
             />
           </Grid>

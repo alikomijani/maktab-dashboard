@@ -1,6 +1,11 @@
 import { Box } from "@mui/material";
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { DataTable, PageActions, PageSearch } from "../../../components";
+import {
+  DataTable,
+  PageActions,
+  PageSearch,
+  UpdateProfileForm,
+} from "../../../components";
 import { columns } from "./constants";
 import { SnackAlertContext } from "../../../providers";
 import { useCustomers } from "../../../api";
@@ -8,21 +13,10 @@ import { useCustomers } from "../../../api";
 function Customers() {
   const [params, setParams] = useState({});
   const {
-    isLoading,
-    error,
+    isLoading: isLoadingData,
+    error: errorLoadingData,
     data: customers,
-  } = useCustomers(
-    { params },
-    {
-      onSuccess: (data) =>
-        showAlert({
-          title: "success",
-          severity: "success",
-          message: "customers search finish",
-        }),
-    }
-  );
-  console.log({ customers });
+  } = useCustomers({ params });
   const { showAlert } = useContext(SnackAlertContext);
   const pageActions = useMemo(
     () => [
@@ -68,13 +62,18 @@ function Customers() {
       <Box mt={8}>
         <PageActions caption={"Customers"} actions={pageActions} />
       </Box>
-      <Box marginY={4}>
-        <PageSearch
-          label={"Customers search"}
-          handleSearch={(search) =>
-            setParams({ username: search ? search : undefined })
-          }
-        />
+      <Box display="flex" marginY={4} gap={3}>
+        <Box>
+          <UpdateProfileForm />
+        </Box>
+        <Box>
+          <PageSearch
+            label={"Customers search"}
+            handleSearch={(search) =>
+              setParams({ username: search ? search : undefined })
+            }
+          />
+        </Box>
       </Box>
       <DataTable caption={"Latest Orders"} columns={columns} rows={customers} />
     </Box>
