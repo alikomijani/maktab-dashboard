@@ -12,7 +12,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../features/auth/authThunk";
 function Copyright(props) {
   return (
     <Typography
@@ -35,14 +37,20 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function Login() {
+export default function Login({ shouldNavigate = true }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const formData = new FormData(event.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+    dispatch(loginUser(data))
+      .unwrap()
+      .then(() => {
+        if (shouldNavigate) {
+          navigate("/dashboard");
+        }
+      });
   };
 
   return (

@@ -9,16 +9,19 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
 import { SnackAlertProvider, ReactQueryProvider } from "./providers/";
-
+import { store } from "./store";
+import { Provider } from "react-redux";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ReactQueryProvider>
-      <ThemeProvider theme={theme}>
-        <SnackAlertProvider>
-          <CssBaseline />
-          <App />
-        </SnackAlertProvider>
-      </ThemeProvider>
-    </ReactQueryProvider>
+    <Provider store={store}>
+      <ReactQueryProvider>
+        <ThemeProvider theme={theme}>
+          <SnackAlertProvider>
+            <CssBaseline />
+            <App />
+          </SnackAlertProvider>
+        </ThemeProvider>
+      </ReactQueryProvider>
+    </Provider>
   </React.StrictMode>
 );
