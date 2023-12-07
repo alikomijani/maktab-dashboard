@@ -1,5 +1,5 @@
 import React, { lazy } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { Outlet, createBrowserRouter } from "react-router-dom";
 import { DashboardLayout, Loadable } from "../components";
 
 const Dashboard = Loadable(lazy(() => import("../Pages/dashboard/Dashboard")));
@@ -9,6 +9,8 @@ const Customers = Loadable(
 const Account = Loadable(
   lazy(() => import("../Pages/dashboard/account/Account"))
 );
+const Login = Loadable(lazy(() => import("../Pages/login/Login")));
+const Register = Loadable(lazy(() => import("../Pages/register/Register")));
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +32,28 @@ export const router = createBrowserRouter([
       {
         path: "account",
         element: <Account />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: (
+      <>
+        <Outlet />
+      </>
+    ),
+    children: [
+      {
+        index: true,
+        element: <h1>habibi welcome to iran</h1>,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },
