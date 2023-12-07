@@ -3,7 +3,8 @@ import React from "react";
 import DashboardHeader from "./DashboardHeader";
 import DashboardSidebar from "./DashboardSidebar";
 import { Outlet } from "react-router-dom";
-export function DashboardLayout() {
+import { WithGuard } from "../../../widget/with-guard/WithGuard";
+function DashboardLayout2() {
   return (
     <Box display="flex">
       <DashboardHeader />
@@ -22,3 +23,5 @@ export function DashboardLayout() {
     </Box>
   );
 }
+
+export const DashboardLayout = WithGuard(DashboardLayout2);

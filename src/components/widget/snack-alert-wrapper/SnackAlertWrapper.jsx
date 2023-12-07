@@ -4,7 +4,6 @@ import { SnackAlertContext } from "../../../providers/SnackAlertProvider";
 
 export function SnackAlertWrapper() {
   const { handleClose, value } = useContext(SnackAlertContext);
-  console.log(value);
   return (
     <SnackbarAlert
       handleClose={handleClose}
