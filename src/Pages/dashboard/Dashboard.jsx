@@ -3,7 +3,8 @@ import React from "react";
 import {
   DataCard,
   LatestOrdersTable,
-  LatestProductList,
+  WithLoadingLatestProductList,
+  WithLoadingLatestUsersList,
 } from "../../components";
 import People from "@mui/icons-material/People";
 
@@ -86,10 +87,10 @@ function Dashboard() {
       </Grid>
       <Grid container spacing={4} mt={4}>
         <Grid item xs={12} md={4} lg={3}>
-          <LatestProductList />
+          <WithLoadingLatestProductList />
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
-          <LatestOrdersTable />
+          <WithLoadingLatestUsersList />
         </Grid>
       </Grid>
     </Box>

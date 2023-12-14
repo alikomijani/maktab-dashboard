@@ -5,3 +5,5 @@ export * from "./loadable/Loadable";
 export * from "./loader";
 export * from "./data-table";
 export * from "./snackbar-alert";
+export * from "./hover/Hover";
+export * from "./with-loading";

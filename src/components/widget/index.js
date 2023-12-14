@@ -4,3 +4,4 @@ export * from "./page-actions";
 export * from "./page-search";
 export * from "./forms";
 export * from "./snack-alert-wrapper";
+export * from "./latest-users-list";

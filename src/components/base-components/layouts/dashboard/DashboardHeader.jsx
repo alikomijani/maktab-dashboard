@@ -4,15 +4,22 @@ import {
   Box,
   IconButton,
   InputAdornment,
+  List,
+  ListItemIcon,
+  MenuItem,
+  Paper,
   TextField,
   Toolbar,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import PeopleIcon from "@mui/icons-material/People";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import { drawerWidth } from "./constants";
 import SearchIcon from "@mui/icons-material/Search";
+import { Logout, PersonAdd, Settings } from "@mui/icons-material";
+import { Hover, HoverButton, HoverContent } from "../../hover/Hover";
 function DashboardHeader() {
+  const [showHover, setShowHover] = useState(false);
   return (
     <AppBar
       position="fixed"
@@ -45,9 +52,35 @@ function DashboardHeader() {
           <IconButton>
             <PeopleIcon />
           </IconButton>
-          <IconButton>
-            <NotificationsActiveIcon />
-          </IconButton>
+          <Hover>
+            <HoverButton>
+              <IconButton>
+                <NotificationsActiveIcon />
+              </IconButton>
+            </HoverButton>
+            <HoverContent>
+              <List component={Paper}>
+                <MenuItem>
+                  <ListItemIcon>
+                    <PersonAdd fontSize="small" />
+                  </ListItemIcon>
+                  Add another account
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon>
+                    <Settings fontSize="small" />
+                  </ListItemIcon>
+                  Settings
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon>
+                    <Logout fontSize="small" />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
+              </List>
+            </HoverContent>
+          </Hover>
           <Avatar sx={{ width: 40, height: 40 }} />
         </Box>
       </Toolbar>

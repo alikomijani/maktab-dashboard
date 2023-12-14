@@ -1,9 +1,11 @@
 import React from "react";
 import { Box, Button } from "@mui/material";
 import { ArrowRight } from "@mui/icons-material";
-import { CaptionList } from "../../base-components";
+import { CaptionList, WithLoading } from "../../base-components";
+import { ProductRow } from "./ProductRow";
+import { LoadingProductList } from "./LoadingProductList";
 
-export function LatestProductList() {
+function LatestProductList({ data = [] }) {
   return (
     <CaptionList
       listAction={
@@ -14,7 +16,23 @@ export function LatestProductList() {
         </Box>
       }
       caption="Latest Products"
-      listItems={[
+      data={data}
+    >
+      {(rows) => rows.map((item) => <ProductRow item={item} key={item.id} />)}
+    </CaptionList>
+  );
+}
+
+export const WithLoadingLatestProductList = WithLoading(
+  LatestProductList,
+  LoadingProductList,
+  getProductList
+);
+
+function getProductList() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve([
         {
           id: 1,
           title: "Dropbox",
@@ -45,7 +63,7 @@ export function LatestProductList() {
           subtitle: "Updated 2 hours ago",
           avatar: "",
         },
-      ]}
-    />
-  );
+      ]);
+    }, 2000);
+  });
 }
