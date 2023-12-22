@@ -1,0 +1,14 @@
+FROM node:20.10-alpine3.19
+
+WORKDIR /frontend/
+
+COPY ./package.json /frontend
+COPY ./yarn.lock /frontend
+
+RUN yarn install
+
+COPY . .
+
+EXPOSE 5173
+
+CMD ["yarn", "dev","--host"]

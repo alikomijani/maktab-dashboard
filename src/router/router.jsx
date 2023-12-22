@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <h1>habibi welcome to iran</h1>,
+        element: <h1>hello word</h1>,
       },
       {
         path: "/register",
