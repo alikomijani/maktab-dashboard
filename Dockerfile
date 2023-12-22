@@ -10,12 +10,12 @@ WORKDIR /frontend/
 COPY ./package.json /frontend
 COPY ./yarn.lock /frontend
 
-RUN yarn install --include=dev
+RUN npm install --include=dev
 
 COPY . .
 # Building our application
 
-RUN yarn build
+RUN npm run build
 
 # Fetching the latest nginx image
 FROM nginx
